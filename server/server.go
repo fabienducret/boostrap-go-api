@@ -22,15 +22,15 @@ func New(c Controllers) *Server {
 	}
 }
 
-func (s *Server) Run(p string) {
-	fmt.Printf("start server on port %s\n", p)
+func (s *Server) Run(port string) {
+	fmt.Printf("start server on port %s\n", port)
 
-	s.httpServer.Addr = fmt.Sprintf(":%s", p)
-	loadRoutes(s.controllers)
+	s.httpServer.Addr = fmt.Sprintf(":%s", port)
+	s.registerRoutes()
 
 	s.httpServer.ListenAndServe()
 }
 
 func (s *Server) Stop() {
-	s.httpServer.Shutdown(context.Background())
+	s.httpServer.Shutdown(context.TODO())
 }

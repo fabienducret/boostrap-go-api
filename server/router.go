@@ -2,6 +2,6 @@ package server
 
 import "net/http"
 
-func loadRoutes(c Controllers) {
-	http.HandleFunc("GET /health", c.Health)
+func (s *Server) registerRoutes() {
+	http.HandleFunc("GET /health", s.controllers.Health)
 }
